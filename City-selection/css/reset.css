@@ -1,0 +1,10 @@
+body{background:#efecec;position:relative;-webkit-tap-highlight-color:rgba(0,0,0,0);max-width: 600px;margin: 0 auto;}
+body,div,dl,dt,dd,ul,li,form,input,button,h1,h2,h3,h4,h5,h6,p{margin: 0 auto;padding:0;font-family:"微软雅黑";}
+html{overflow-x:hidden;-webkit-text-size-adjust:none;}
+ul,li,dl,dt,dd{display:block;list-style:none;}
+img{border:0;max-width:100%;height: auto;}
+.clear{background:none;border:0;clear:both;display:block;float:none;font-size:0;overflow:hidden;visibility:hidden;width:0;height:0;}
+a{text-decoration:none;outline:none;}
+.fl{float:left;}
+.fr{float:right;}
+.none{display:none;}

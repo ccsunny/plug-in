@@ -1,0 +1,72 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    background: url("../images/bg.jpg");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#Main {
+    width: 1000px;
+    height: 600px;
+    margin: 80px auto 0px;
+    position: relative;
+}
+#Main .title {
+    height: 50px;
+    background: #3397e4;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+#Main #Map {
+    height: 550px;
+}
+#Main .Search {
+    width: 615px;
+    height: 40px;
+    background: #fff;
+    position: absolute;
+    top: 100px;
+    left: 180px;
+    box-shadow: 0px 0px 20px #000;
+}
+#Main .Search input.txt {
+    width: 515px;
+    height: 40px;
+    border: 0px;
+    float: left;
+    text-indent: 10px;
+}
+#Main .Search input.but {
+    width: 100px;
+    height: 40px;
+    background: #690;
+    border: 0px;
+    float: left;
+    color: #fff;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+#Main .Menu {
+    width: 110px;
+    height: 120px;
+    background: #fff;
+    box-shadow: 0px 0px 10px #000;
+}
+#Main .Menu ul li {
+    list-style-type: none;
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: Center;
+    border-bottom: 1px dotted #ccc;
+}
+#Main .Menu ul li:hover {
+    background: #3397e4;
+    color: #fff;
+}

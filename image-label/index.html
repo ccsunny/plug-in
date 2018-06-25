@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery图片上传生成云标签代码</title>
+<style>
+	#choose span{
+		margin-right:10px;
+	}
+	#choose{
+		position: absolute;
+		width:640px;
+		height:500px;
+		background:rgba(0,0,0,0.7);
+		text-align: center;
+		line-height: 500px;
+		font-size:50px; 
+		top:0;
+		left:0;
+		display: none;
+		color:#fff;
+		font-weight: bold;
+	}
+	.main{
+		position: relative;
+		margin-right:60px;
+	}
+	.left{
+		float:left;
+	}
+	.sftg-yourinfo{
+		margin-top:60px;
+	}
+</style>
+</head>
+<body>
+<div class="content">
+	<div class="main left" >
+		<div id="main" style="width:640px;height:500px;"></div>
+		<div id="choose"></div>
+	</div>
+	<div class="sftg-yourinfo left">
+		<div class="sftglong-input">
+		<h3>随便选张图看看看效果</h3>
+			<a><input type="file" /></a>
+		</div>
+		<div id="lee"></div>
+	</div>		
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-wordcloud.min.js"></script>
+<script>
+ $(function(){
+	function xmTanUploadImg(obj) {
+		var file = obj.files[0];              
+		var reader = new FileReader();            
+		reader.onload = function (e) {           	
+			var img = '<img src='+ e.target.result +'>';
+			srcword = e.target.result;
+			img = '<div class="item">'+img+'<i class="iconfont icon-guanbi1"></i></div>';
+			$('#lee').html(img);
+		}
+	   reader.readAsDataURL(file);
+	}
+	//上传文件
+	$('.sftg-yourinfo').on('change','.sftglong-input a input',function(event){
+		event.stopPropagation();
+		event.preventDefault();
+		var val = $(this).val();
+		var dataval=[];
+		val = val.split('\\')[2];
+		$(this).parent().parent().find('span').html(val);	
+		$('#lee').css({'height':'180px','margin-top':'36px'});
+		xmTanUploadImg(this);
+		console.log('aaa');
+		setTimeout(add,500);
+	});
+	//绘制词云
+	function add(){
+		var myChart = echarts.init(document.getElementById('main'));
+		var presents = ['圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯','公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯','圣诞树', '贺卡', '圣诞礼盒', '围巾', '袜子', '苹果', '手链', '巧克力', '玫瑰', '香水', '乐高', '芭比', '项链', '抱枕', '变形金刚', '摆件', '魔方', '文具', '棒棒糖', '蓝牙耳帽', '超级飞侠', '暖手宝', '夜灯', '堆袜', '耳钉', '公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯','公仔', '手机壳', '八音盒', '剃须刀', '打火机', '手表', '巴克球', '模型', '音响', '蒙奇奇', '保温杯']				
+		var chooseurl = $('#lee').find('img').attr('src');
+		var data = [];
+		 for (var i = 0; i < presents.length; ++i) {
+			 data.push({
+				 name: presents[i],
+				 value: (presents.length - i) * 2
+			 });
+		 }
+		 for (var i = 10; i < presents.length; ++i) {
+			 var cnt = Math.floor(Math.random() * 10);
+			 for (var j = 0; j < cnt; ++j) {
+				 data.push({
+					 name: presents[i],
+					 value: Math.random() * 100
+				 });
+			 }
+		 }
+			 var maskImage = new Image();
+			 maskImage.onload = function() {
+				 myChart.setOption({
+					 tooltip: {
+						 show: false
+					 },
+					 series: [{
+						 type: 'wordCloud',
+						 gridSize: 1,
+						 sizeRange: [6, 20],
+						 rotationRange: [0, 180],
+						 rotationStep: 90,
+				            // shape:'trapezoidal',
+						 maskImage: maskImage,
+						 textStyle: {
+							 normal: {
+								 color: function(v) {
+									 if (v.value > 190) {
+										 return 'rgb(110, 206, 7)';
+									 } else if (v.value > 160) {
+										 return 'rgb(7, 49, 206)';
+									 } else if (v.value > 130) {
+										 return 'rgb(105, 7, 206)';
+									 } else if (v.value > 110) {
+										 return 'rgb(185, 45, 225)';
+									 } else if (v.value > 90) {
+										 return 'rgb(247, 65, 193)';
+									 } else if (v.value > 60) {
+										 return 'rgb(223, 31, 126)';
+									 } else if (v.value > 40) {
+										 return 'rgb(66, 152, 177)';
+									 } else if (v.value > 20) {
+										 return 'rgb(229, 208, 66)';
+									 } else if (v.value > 10) {
+										 return 'rgb(189, 117, 82)';
+									 } else {
+										 return 'rgb(20, 186, 167)';
+									 }
+								 }
+							 },
+						 },
+						 width: 500,
+						 top: 40,
+						 data: data
+					 }]
+				 });
+			 };
+			 maskImage.src = chooseurl;
+	}
+	var myChart = echarts.init(document.getElementById('main'));
+	myChart.on('click', function (params) { 
+			$('#choose').show();
+			$('#choose').html(params.name);
+	});
+	$('#choose').on('click',function(){
+		$('#choose').hide();
+	});
+});
+</script>
+</body>
+</html>

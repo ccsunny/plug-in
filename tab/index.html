@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>简单jquery-tab选项卡切换</title>
+<style type="text/css">
+*{margin:0 auto;padding:0;list-style-type:none;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* tab */
+#tab{width:400px;position:relative;margin:40px auto;}
+#tab .tab_menu{width:100%;float:left;position:absolute;z-index:1;}
+#tab .tab_menu li{float:left;width:92px;height:30px;line-height:30px;border:1px solid #ccc;border-bottom:0px;cursor:pointer;text-align:center;margin:0 2px 0 0;}
+#tab .tab_box{width:400px;height:100px;clear:both;top:30px;position:relative;border:1px solid #CCC;background-color:#FF0;}
+#tab .tab_menu .selected{background-color:yellow;cursor:pointer;}
+.hide{display:none;}
+.tab_box div{padding:10px;} 
+</style>
+<script type="text/javascript" src="js/jQuery1.7.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $tab_li = $('#tab ul li');
+	$tab_li.hover(function(){
+		$(this).addClass('selected').siblings().removeClass('selected');
+		var index = $tab_li.index(this);
+		$('div.tab_box > div').eq(index).show().siblings().hide();
+	});	
+});
+</script>
+</head>
+<body>
+<div id="tab">
+	<ul class="tab_menu">
+    	<li class="selected">时事</li>
+        <li>体育</li>
+        <li>新闻</li>
+    </ul>
+    <div class="tab_box">
+    	<div>时事的内容</div>
+        <div class="hide">体育的内容</div>
+        <div class="hide">新闻的内容</div>
+    </div>
+</div>
+</body>
+</html>
